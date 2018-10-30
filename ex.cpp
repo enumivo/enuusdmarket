@@ -8,7 +8,7 @@
 using namespace enumivo;
 using namespace std;
 
-void ex::buy(const currency::transfer &transfer) {
+void ex::receivedenu(const currency::transfer &transfer) {
   if (transfer.to != _self) {
     return;
   }
@@ -50,7 +50,7 @@ void ex::buy(const currency::transfer &transfer) {
       .send();
 }
 
-void ex::sell(const currency::transfer &transfer) {
+void ex::receivedusd(const currency::transfer &transfer) {
   if (transfer.to != _self) {
     return;
   }
@@ -100,7 +100,7 @@ void ex::apply(account_name contract, action_name act) {
 
     enumivo_assert(transfer.quantity.symbol == ENU_SYMBOL,
                  "Must send ENU");
-    buy(transfer);
+    receivedenu(transfer);
     return;
   }
 
@@ -109,7 +109,7 @@ void ex::apply(account_name contract, action_name act) {
 
     enumivo_assert(transfer.quantity.symbol == USD_SYMBOL,
                  "Must send USD");
-    sell(transfer);
+    receivedusd(transfer);
     return;
   }
 
