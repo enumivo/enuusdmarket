@@ -29,7 +29,7 @@ void ex::receivedenu(const currency::transfer &transfer) {
   usd_balance = usd_balance/10000;
 
   //deduct fee
-  received = received * 0.9975;
+  received = received * 0.997;
   
   double product = usd_balance * enu_balance;
 
@@ -71,7 +71,7 @@ void ex::receivedusd(const currency::transfer &transfer) {
   enu_balance = enu_balance/10000;
 
   //deduct fee
-  received = received * 0.9975;
+  received = received * 0.997;
 
   double product = enu_balance * usd_balance;
 
