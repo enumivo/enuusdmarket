@@ -55,17 +55,13 @@ void ex::sell(const currency::transfer &transfer) {
     return;
   }
 
-  action(permission_level{_self, N(active)}, N(stable.coin), N(transfer),
-         std::make_tuple(_self, N(enu.usd.mm), transfer.quantity,
-                         std::string("Sell USD for ENU")))
-      .send();
-
-/*
   // get USD balance
   double usd_balance = enumivo::token(N(enu.usd.mm)).
 	   get_balance(_self, enumivo::symbol_type(USD_SYMBOL).name()).amount;
   
   usd_balance = usd_balance/10000;
+
+/*
 
   double received = transfer.quantity.amount;
   received = received/10000;
@@ -93,6 +89,11 @@ void ex::sell(const currency::transfer &transfer) {
                          std::string("Sell USD for ENU")))
       .send();
   */    
+
+  action(permission_level{_self, N(active)}, N(stable.coin), N(transfer),
+         std::make_tuple(_self, N(enu.usd.mm), transfer.quantity,
+                         std::string("Sell USD for ENU")))
+      .send();
       
 }
 
