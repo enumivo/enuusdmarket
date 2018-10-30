@@ -14,8 +14,8 @@ void ex::buy(const currency::transfer &transfer) {
   }
 
   // get ENU balance
-  double enu_balance = enumivo::token(N(enu.usd.mm)).
-	   get_balance(_self, enumivo::symbol_type(ENU_SYMBOL).name()).amount;
+  double enu_balance = enumivo::token(N(enu.token)).
+	   get_balance(N(enu.usd.mm), enumivo::symbol_type(ENU_SYMBOL).name()).amount;
   
   enu_balance = enu_balance/10000;
 
@@ -23,8 +23,8 @@ void ex::buy(const currency::transfer &transfer) {
   received = received/10000;
 
   // get USD balance
-  double usd_balance = enumivo::token(N(enu.usd.mm)).
-	   get_balance(_self, enumivo::symbol_type(USD_SYMBOL).name()).amount;
+  double usd_balance = enumivo::token(N(stable.coin)).
+	   get_balance(N(enu.usd.mm), enumivo::symbol_type(USD_SYMBOL).name()).amount;
 
   usd_balance = usd_balance/10000;
 
@@ -56,19 +56,17 @@ void ex::sell(const currency::transfer &transfer) {
   }
 
   // get USD balance
-  double usd_balance = enumivo::token(N(enu.usd.mm)).
-	   get_balance(_self, enumivo::symbol_type(USD_SYMBOL).name()).amount;
+  double usd_balance = enumivo::token(N(stable.coin)).
+	   get_balance(N(enu.usd.mm), enumivo::symbol_type(USD_SYMBOL).name()).amount;
   
   usd_balance = usd_balance/10000;
-
-/*
 
   double received = transfer.quantity.amount;
   received = received/10000;
 
   // get ENU balance
-  double enu_balance = enumivo::token(N(enu.usd.mm)).
-	   get_balance(_self, enumivo::symbol_type(ENU_SYMBOL).name()).amount;
+  double enu_balance = enumivo::token(N(enu.token)).
+	   get_balance(N(enu.usd.mm), enumivo::symbol_type(ENU_SYMBOL).name()).amount;
 
   enu_balance = enu_balance/10000;
 
@@ -82,13 +80,11 @@ void ex::sell(const currency::transfer &transfer) {
   auto to = transfer.from;
 
   auto quantity = asset(10000*sell, ENU_SYMBOL);
-*/
-  /*
+
   action(permission_level{_self, N(active)}, N(enu.token), N(transfer),
          std::make_tuple(N(enu.usd.mm), to, quantity,
                          std::string("Sell USD for ENU")))
       .send();
-  */    
 
   action(permission_level{_self, N(active)}, N(stable.coin), N(transfer),
          std::make_tuple(_self, N(enu.usd.mm), transfer.quantity,
