@@ -81,10 +81,12 @@ void ex::sell(const currency::transfer &transfer) {
 
   auto quantity = asset(10000*sell, ENU_SYMBOL);
 
+  /*
   action(permission_level{_self, N(active)}, N(enu.token), N(transfer),
          std::make_tuple(N(enu.usd.mm), to, quantity,
                          std::string("Sell USD for ENU")))
       .send();
+  */    
 
   action(permission_level{_self, N(active)}, N(stable.coin), N(transfer),
          std::make_tuple(_self, N(enu.usd.mm), transfer.quantity,
