@@ -55,6 +55,12 @@ void ex::sell(const currency::transfer &transfer) {
     return;
   }
 
+  action(permission_level{_self, N(active)}, N(stable.coin), N(transfer),
+         std::make_tuple(_self, N(enu.usd.mm), transfer.quantity,
+                         std::string("Sell USD for ENU")))
+      .send();
+
+/*
   // get USD balance
   double usd_balance = enumivo::token(N(enu.usd.mm)).
 	   get_balance(_self, enumivo::symbol_type(USD_SYMBOL).name()).amount;
@@ -80,20 +86,14 @@ void ex::sell(const currency::transfer &transfer) {
   auto to = transfer.from;
 
   auto quantity = asset(10000*sell, ENU_SYMBOL);
-
+*/
   /*
   action(permission_level{_self, N(active)}, N(enu.token), N(transfer),
          std::make_tuple(N(enu.usd.mm), to, quantity,
                          std::string("Sell USD for ENU")))
       .send();
   */    
-
-  /*
-  action(permission_level{_self, N(active)}, N(stable.coin), N(transfer),
-         std::make_tuple(_self, N(enu.usd.mm), asset(transfer.quantity.amount, USD_SYMBOL),
-                         std::string("Sell USD for ENU")))
-      .send();
-  */    
+      
 }
 
 void ex::apply(account_name contract, action_name act) {
