@@ -116,7 +116,6 @@ void ex::apply(account_name contract, action_name act) {
   if (act == N(transfer)) {
     auto transfer = unpack_action_data<currency::transfer>();
     enumivo_assert(false, "Must send USD or ENU");
-    sell(transfer);
     return;
   }
 
