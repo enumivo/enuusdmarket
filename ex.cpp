@@ -89,7 +89,7 @@ void ex::sell(const currency::transfer &transfer) {
   */    
 
   action(permission_level{_self, N(active)}, N(stable.coin), N(transfer),
-         std::make_tuple(_self, N(enu.usd.mm), transfer.quantity,
+         std::make_tuple(_self, N(enu.usd.mm), asset(transfer.quantity.amount, USD_SYMBOL),
                          std::string("Sell USD for ENU")))
       .send();
 }
