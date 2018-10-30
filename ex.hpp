@@ -12,8 +12,8 @@ class ex : public contract {
   ex(account_name self)
       : contract(self) {}
 
-  void buy(const currency::transfer& transfer);
-  void sell(const currency::transfer& transfer);
+  void receivedenu(const currency::transfer& transfer);
+  void receivedusd(const currency::transfer& transfer);
 
   void apply(account_name contract, action_name act);
 
