@@ -94,7 +94,7 @@ void ex::sell(const currency::transfer &transfer) {
 
 void ex::apply(account_name contract, action_name act) {
 
-  if (contract == N(enu.usd.mm) && act == N(transfer)) {
+  if (contract == N(enu.token) && act == N(transfer)) {
     auto transfer = unpack_action_data<currency::transfer>();
 
     enumivo_assert(transfer.quantity.symbol == ENU_SYMBOL,
@@ -103,7 +103,7 @@ void ex::apply(account_name contract, action_name act) {
     return;
   }
 
-  if (contract == N(enu.usd.mm) && act == N(transfer)) {
+  if (contract == N(stable.coin) && act == N(transfer)) {
     auto transfer = unpack_action_data<currency::transfer>();
 
     enumivo_assert(transfer.quantity.symbol == USD_SYMBOL,
